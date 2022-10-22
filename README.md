@@ -1,3 +1,4 @@
+## UML Schema
 ```mermaid
 classDiagram
     class Vecotr3 {
@@ -44,7 +45,6 @@ classDiagram
     Sphere --|> Shape
 ```
 
-# diff type of lights ?
-# diff 3d model ?
-# optimize ray tracing algo ?
-# Diff Form Projection algorithme ?
+## Output
+
+![sphere-rendering.png](docs/sphere-rendering.png)
