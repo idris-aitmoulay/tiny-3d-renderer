@@ -67,22 +67,38 @@ const SCENE = {
     ]
 };
 
+let rayTracer, projectionImage;
 const WIDTH = 800;
 const HEIGHT = 800;
-const rayTracer = new RayTracer(SCENE, WIDTH, HEIGHT);
+function init() {
+    rayTracer = new RayTracer(SCENE, WIDTH, HEIGHT);
+    projectionImage = new ImageProjection(WIDTH, HEIGHT);
+    document.image = projectionImage;
+}
 
-// pre-rendering process
-const projectionImage = new ImageProjection(WIDTH, HEIGHT);
-for (let y = 0; y < HEIGHT; y++) {
-    for (let x = 0; x < WIDTH; x++) {
-        projectionImage.putPixel(
-            x,
-            y,
-            Color.imageColorFromNormalizedColor(rayTracer.tracedValueAtPixel(x, y))
-        );
+function preRender() {
+    // pre-rendering process
+    for (let y = 0; y < HEIGHT; y++) {
+        for (let x = 0; x < WIDTH; x++) {
+            projectionImage.putPixel(
+                x,
+                y,
+                Color.imageColorFromNormalizedColor(rayTracer.tracedValueAtPixel(x, y))
+            );
+        }
     }
 }
 
-// rendering process
-document.image = projectionImage;
-projectionImage.render(document.querySelector('body'));
+function render() {
+    // rendering process
+    projectionImage.render(document.querySelector('body'));
+}
+
+function mounted() {
+    init();
+    preRender();
+    render();
+}
+
+mounted();
+
