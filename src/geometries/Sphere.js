@@ -1,18 +1,3 @@
-class Shape {
-    constructor(center = 0) {
-        this.center = center;
-    }
-
-    /**
-     * @description Function which return intersection of ray by object.
-     * @param {Ray} ray
-     * @return {null|number}
-     */
-    getIntersection(ray) {
-        throw new Error('To be implemented by subclass')
-    }
-}
-
 /**
  * Sphere is like Tiny3dRender Sphere implementation
  * Every Imported Sphere (fbx, blend, obj, ...) Should have Sphere Proxy which will respect our Interface
@@ -25,6 +10,11 @@ class Sphere extends Shape {
     }
 
     /** @override */
+    /**
+     * @description Get sphere intersection through sphere math equation (x*x + y*y = R*R)
+     * @param ray
+     * @return {null|number}
+     */
     getIntersection(ray) {
         const cp = ray.origin.minus(this.center);
         const a = ray.direction.dot(ray.direction);
