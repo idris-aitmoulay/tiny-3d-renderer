@@ -49,9 +49,18 @@ classDiagram
 
 ![sphere-rendering.png](docs/sphere-rendering.png)
 
+### Annexe:
+- https://fr.wikipedia.org/wiki/Algorithme_de_trac%C3%A9_de_segment_de_Bresenham
+- https://cahier-de-prepa.fr/mp-charlemagne/download?id=771#:~:text=L'algorithme%20de%20Bresenham%20est,est%20autre%20que%20p0%20D%20
+
 ## What's Next ?
 
 - Write Plan 2D
 - Rotate Camera
 - Write Cube
 - Optimize rendering system
+- move camera position
+- move light position
+- add BufferShape > Polygone
+- Add BufferShape > Triangle
+- add *-Control (ScaleControl, RotateControl, TransitionControl)

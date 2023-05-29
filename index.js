@@ -1,3 +1,22 @@
+/**
+ * Material.fromJs({
+ *         ka: new Color(0.1, 0.1, 0.1),
+ *         kd: new Color(0.9, 0.5, 0.5),
+ *         ks: new Color(0.7, 0.7, 0.7),
+ *         alpha: 20,
+ *         kr: new Color(0.2, 0.1, 0.1)
+ *     }),
+ * @type {Material[]}
+ */
+const Materials = [
+    Material.random(),
+    Material.random(),
+    Material.random(),
+    Material.random(),
+    Material.random(),
+];
+
+
 const SCENE = {
     planProjection: { // ImageProjection with grid system
         topLeft: new Vector3(-1.28, 0.86, -0.5),
@@ -10,47 +29,29 @@ const SCENE = {
     objects: [ // objects: 3d objects (type = Sphere|Cube|Plan|..., position)
         new Sphere(
             new Vector3(-1.1, 0.6, -1),
-            Material.fromJs({
-                ka: new Color(0.1, 0.1, 0.1),
-                kd: new Color(0.9, 0.5, 0.5),
-                ks: new Color(0.7, 0.7, 0.7),
-                alpha: 20,
-                kr: new Color(0.2, 0.1, 0.1)
-            }),
+            Materials[0],
         0.2
         ),
         new Sphere(
             new Vector3(0.2, -0.1, -1),
-            Material.fromJs({
-                ka: new Color(0.1, 0.1, 0.1),
-                kd: new Color(0.5, 0.5, 0.9),
-                ks: new Color(0.7, 0.7, 0.7),
-                alpha: 20,
-                kr: new Color(0.1, 0.1, 0.2)
-            }),
+            Materials[1],
             0.5
         ),
         new Sphere(
             new Vector3(1.2, -0.5, -1.75),
-            Material.fromJs({
-                ka: new Color(0.1, 0.1, 0.1),
-                kd: new Color(0.1, 0.5, 0.1),
-                ks: new Color(0.7, 0.7, 0.7),
-                alpha: 20,
-                kr: new Color(0.8, 0.9, 0.8)
-            }),
+            Materials[2],
             0.4
         ),
         new Sphere(
             new Vector3(1.4, 0.5, -0.75),
-            Material.fromJs({
-                ka: new Color(0.1, 0.1, 0.1),
-                kd: new Color(0.1, 0.5, 0.1),
-                ks: new Color(0.7, 0.7, 0.7),
-                alpha: 2,
-                kr: new Color(0.8, 0.9, 0.8)
-            }),
+            Materials[3],
             0.2
+        ),
+        new Disk(
+            new Vector3(1, 1, -2.8),
+            new Vector3(0, -1, -1),
+            0.3,
+            Materials[4],
         )
     ],
     lights: [ // lights: add lights (type, position, direction)

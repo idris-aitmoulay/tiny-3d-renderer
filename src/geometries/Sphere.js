@@ -9,17 +9,18 @@ class Sphere extends Shape {
         this.material = material;
     }
 
-    /** @override */
     /**
+     * @override
      * @description Get sphere intersection through sphere math equation (x*x + y*y = R*R)
+     * here we need to find {Tx} to have Point = rayOrigin + Tx * rayDirection
      * @param ray
      * @return {null|number}
      */
     getIntersection(ray) {
         const cp = ray.origin.minus(this.center);
-        const a = ray.direction.dot(ray.direction);
+        const a = ray.direction.dot();
         const b = 2 * cp.dot(ray.direction);
-        const c = cp.dot(cp) - this.radius * this.radius;
+        const c = cp.dot() - this.radius * this.radius;
         const discriminant = b * b - 4 * a * c; /* δ = bb - 4ac */
 
         if (discriminant < 0) {

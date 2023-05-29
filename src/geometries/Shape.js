@@ -11,4 +11,13 @@ class Shape {
     getIntersection(ray) {
         throw new Error('To be implemented by subclass')
     }
+
+    /**
+     * @description
+     * @param {Vector3} point
+     * @return {Vector3} normalVector3
+     */
+    normalAt(point) {
+        throw new Error('To be implemented by subclass')
+    }
 }
