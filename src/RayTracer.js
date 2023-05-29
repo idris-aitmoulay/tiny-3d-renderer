@@ -128,6 +128,7 @@ class RayTracer {
 
                 let point = ray.at(t);
 
+                // if (t < 0) means we change direction of light
                 return {
                     object: obj,
                     t: t,
@@ -228,6 +229,9 @@ class RayTracer {
     }
 }
 
+/**
+ * Ray is like à vector with fixed origin
+ */
 class Ray {
     /**
      *

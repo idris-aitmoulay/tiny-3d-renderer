@@ -1,6 +1,11 @@
-const VECTOR3_ZERO = 0;
+const ZERO = 0;
+const ONE = 0;
+
 class Vector3 {
-    constructor(x = VECTOR3_ZERO, y = VECTOR3_ZERO, z = VECTOR3_ZERO) {
+    static VECTOR3_ZERO = new Vector3(ZERO, ZERO, ZERO);
+    static VECTOR3_ONE = new Vector3(ONE, ONE, ONE);
+
+    constructor(x = ZERO, y = ZERO, z = ZERO) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -51,12 +56,16 @@ class Vector3 {
      * @param Vector3 other
      * @returns {number}
      */
-    dot(other) {
+    dot(other = this) {
         return (
             this.x * other.x +
             this.y * other.y +
             this.z * other.z
         );
+    }
+
+    static dot(start, end) {
+        return start.dot(end);
     }
 
     /**
@@ -78,5 +87,12 @@ class Vector3 {
      */
     lerp(end, t) {
         return this.scale(1 - t).plus(end.scale(t));
+    }
+
+    dist(other = this) {
+        const x = this.x - other.x;
+        const y = this.y - other.y;
+        const z = this.z - other.z;
+        return Math.hypot(x, y, z);
     }
 }
