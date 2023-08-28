@@ -1,5 +1,6 @@
 const DEFAULT_SIZE = 0.4;
 class Disk extends Shape {
+    static DEFAULT_DISK_SIZE = DEFAULT_SIZE;
     constructor(
         center = Vector3.VECTOR3_ZERO,
         normal = Vector3.VECTOR3_ONE,
