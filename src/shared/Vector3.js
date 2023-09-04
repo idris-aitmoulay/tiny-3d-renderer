@@ -20,6 +20,10 @@ class Vector3 {
         return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar)
     }
 
+    static scale(vector, scalar) {
+        return new Vector3(vector.x * scalar, vector.y * scalar, vector.z * scalar)
+    }
+
     /**
      *
      * @param Vector3 other
@@ -64,8 +68,12 @@ class Vector3 {
         );
     }
 
-    static dot(start, end) {
-        return start.dot(end);
+    static dot(self, other) {
+        return (
+            self.x * other.x +
+            self.y * other.y +
+            self.z * other.z
+        );
     }
 
     /**
@@ -76,7 +84,7 @@ class Vector3 {
      * @returns {Vector3}
      */
     static lerp(start, end, t) {
-        return start.scale(1 - t).plus(end.scale(t));
+        return this.scale(start, 1 - t).plus(this.scale(end, t));
     }
 
     /**
@@ -94,5 +102,16 @@ class Vector3 {
         const y = this.y - other.y;
         const z = this.z - other.z;
         return Math.hypot(x, y, z);
+    }
+
+    static dist(self, other) {
+        const x = self.x - other.x;
+        const y = self.y - other.y;
+        const z = self.z - other.z;
+        return Math.hypot(x, y, z);
+    }
+
+    static deserialize({x, y, z}) {
+        return new Vector3(x, y, z)
     }
 }

@@ -1,5 +1,5 @@
 class Shape {
-    constructor(center = 0) {
+    constructor(center = Vector3.VECTOR3_ZERO) {
         this.center = center;
     }
 
@@ -19,5 +19,16 @@ class Shape {
      */
     normalAt(point) {
         throw new Error('To be implemented by subclass')
+    }
+
+    toObject() {
+        return {
+          center: this.center,
+          _type: 'Shape',
+        }
+    }
+
+    static fromObject({center}) {
+        return new Shape(center);
     }
 }

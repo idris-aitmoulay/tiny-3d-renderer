@@ -10,4 +10,8 @@ class Light {
         this.specularIntensity = specularIntensity;
         this.diffuseIntensity = diffuseIntensity;
     }
+
+    static deserialize({position, specularIntensity, diffuseIntensity}) {
+        return new Light(Vector3.deserialize(position), Color.deserialize(specularIntensity), Color.deserialize(diffuseIntensity));
+    }
 }

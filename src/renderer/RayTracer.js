@@ -1,11 +1,14 @@
-const NUM_SAMPLES_PER_DIRECTION = 2; // todo: ???
-const MAX_BOUNCES = 3; // is used to only found reflected color in a pixel {MAX_BOUNCES} time
-const NUM_SAMPLES_PER_PIXEL = NUM_SAMPLES_PER_DIRECTION * NUM_SAMPLES_PER_DIRECTION; // todo: ??
+const DEFAULT_NUM_SAMPLES_PER_DIRECTION = 2; // todo: ???
+const DEFAULT_MAX_BOUNCES = 3; // is used to only found reflected color in a pixel {this.MAX_BOUNCES} time
+const DEFAULT_NUM_SAMPLES_PER_PIXEL = DEFAULT_NUM_SAMPLES_PER_DIRECTION * DEFAULT_NUM_SAMPLES_PER_DIRECTION; // todo: ??
 class RayTracer {
     constructor(scene, w, h) {
         this.scene = scene;
         this.w = w;
         this.h = h;
+        this.NUM_SAMPLES_PER_DIRECTION = DEFAULT_NUM_SAMPLES_PER_DIRECTION;
+        this.MAX_BOUNCES = DEFAULT_MAX_BOUNCES;
+        this.NUM_SAMPLES_PER_PIXEL = DEFAULT_NUM_SAMPLES_PER_PIXEL;
     }
 
     /**
@@ -33,14 +36,14 @@ class RayTracer {
      */
     tracedValueAtPixel(x, y) {
         const color = new Color(0, 0, 0);
-        for (let dx = 0; dx < NUM_SAMPLES_PER_DIRECTION; dx++) {
-            for (let dy = 0; dy < NUM_SAMPLES_PER_DIRECTION; dy++) {
+        for (let dx = 0; dx < this.NUM_SAMPLES_PER_DIRECTION; dx++) {
+            for (let dy = 0; dy < this.NUM_SAMPLES_PER_DIRECTION; dy++) {
                 const ray = this._rayFromPixel(
-                    x + dx / NUM_SAMPLES_PER_DIRECTION,
-                    y + dy / NUM_SAMPLES_PER_DIRECTION
+                    x + dx / this.NUM_SAMPLES_PER_DIRECTION,
+                    y + dy / this.NUM_SAMPLES_PER_DIRECTION
                 );
-                const sample = this._tracedValueForRay(ray, MAX_BOUNCES);
-                color.addInPlace(sample.scale(1 / NUM_SAMPLES_PER_PIXEL));
+                const sample = this._tracedValueForRay(ray, this.MAX_BOUNCES);
+                color.addInPlace(sample.scale(1 / this.NUM_SAMPLES_PER_PIXEL));
             }
         }
         return color;
@@ -229,26 +232,3 @@ class RayTracer {
     }
 }
 
-/**
- * Ray is like à vector with fixed origin
- */
-class Ray {
-    /**
-     *
-     * @param Vector3 origin
-     * @param Vector3 direction
-     */
-    constructor(origin, direction) {
-        this.origin = origin;
-        this.direction = direction;
-    }
-
-    /**
-     *
-     * @param Int t
-     * @return {Vector3}
-     */
-    at(t) {
-        return this.origin.plus(this.direction.scale(t));
-    }
-}

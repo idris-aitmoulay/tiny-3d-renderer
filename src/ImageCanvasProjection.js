@@ -3,8 +3,9 @@
  * @param Int w: width
  * @param Int h: height
  */
-class ImageProjection {
+class ImageCanvasProjection extends ImageProjection {
     constructor(w, h) {
+        super();
         this.w = w;
         this.h = h;
         this.canvas = this.createCanvas();

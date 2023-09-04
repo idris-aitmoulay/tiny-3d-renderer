@@ -30,4 +30,14 @@ class Material {
     static random() {
         return this.fromJs({ka: Color.random(), kd: Color.random(), ks: Color.random(), alpha: 20, kr: Color.random()})
     }
+
+    static deserialize({ka, kd, ks, kr, alpha}) {
+        return new Material(
+            Color.deserialize(ka),
+            Color.deserialize(kd),
+            Color.deserialize(ks),
+            Color.deserialize(kr),
+            alpha
+        );
+    }
 }
