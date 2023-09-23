@@ -76,7 +76,7 @@ classDiagram
    - [ ] use `Möller–Trumbore intersection algorithm`
 
 - Animation
-   - [ ]  Rotate Camera
+   - [ ] Rotate Camera
    - [ ] move camera position
    - [ ] move light position
    - [ ] add *-Control (ScaleControl, RotateControl, TransitionControl)
