@@ -13,7 +13,7 @@ A quick note, these test applications runs faster on firefox (than chrome).
 ![sphere-rendering.png](docs/sphere-rendering.png)
 
 
-## Example 2 - Ray tracing using Web Workers (16) [320x240]
+## Example 2 - Ray tracing using Web Workers (16) [900x900]
 
 - ensure `const isMultiThreadingEnabled = true` on `index.js` then open `index.html`
 
