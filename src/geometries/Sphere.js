@@ -52,4 +52,21 @@ class Sphere extends Shape {
     normalAt(point) {
         return point.minus(this.center).normalized();
     }
+
+    toObject() {
+        return {
+            center: this.center,
+            radius: this.radius,
+            material: this.material,
+            _type: 'Sphere',
+        }
+    }
+
+    static fromObject({center, material, radius}) {
+        return new Sphere(
+            Vector3.deserialize(center),
+            Material.deserialize(material),
+            radius
+        );
+    }
 }

@@ -6,20 +6,26 @@
     </head>
     <body>
         <!-- core -->
-        <script src="src/Light.js" type="text/javascript"></script>
-        <script src="src/Vector3.js" type="text/javascript"></script>
-        <script src="src/Vector3Utils.js" type="text/javascript"></script>
-        <script src="src/Color.js" type="text/javascript"></script>
-        <script src="src/Material.js" type="text/javascript"></script>
-        <script src="src/ImageProjection.js" type="text/javascript"></script>
+        <script src="src/shared/Light.js" type="text/javascript"></script>
+        <script src="src/shared/Vector3.js" type="text/javascript"></script>
+        <script src="src/shared/Vector3Utils.js" type="text/javascript"></script>
+        <script src="src/shared/Color.js" type="text/javascript"></script>
+        <script src="src/shared/Material.js" type="text/javascript"></script>
+        <script src="src/shared/Projection.js" type="text/javascript"></script>
+        <script src="src/ImageCanvasProjection.js" type="text/javascript"></script>
 
         <!-- required geometries lib -->
         <script src="src/geometries/Shape.js" type="text/javascript"></script>
         <script src="src/geometries/Sphere.js" type="text/javascript"></script>
         <script src="src/geometries/Disk.js" type="text/javascript"></script>
+        <script src="src/geometries/ShapeUtils.js" type="text/javascript"></script>
 
         <!-- required libraries -->
-        <script src="src/RayTracer.js" type="text/javascript"></script>
+        <script src="src/renderer/Ray.js" type="text/javascript"></script>
+        <script src="src/renderer/RayTracer.js" type="text/javascript"></script>
+        <script src="src/renderer/PixelWorker.js" type="text/javascript"></script>
+        <script src="src/renderer/RayTracingJob.js" type="text/javascript"></script>
+        <script src="src/renderer/MultiRayTracingRenderer.js" type="text/javascript"></script>
 
         <!-- Main file -->
         <script src="index.js" type="text/javascript"></script>

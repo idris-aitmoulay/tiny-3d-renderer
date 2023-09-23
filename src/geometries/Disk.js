@@ -31,12 +31,27 @@ class Disk extends Shape {
         }
 
         const intersection = ray.origin.plus(direction.scale(alpha));
-        const dist = this.center.dist(intersection);
+        const dist = Vector3.dist(this.center, intersection);
         if (dist > this.radius) return null;
         return alpha;
     }
 
     normalAt(point) {
         return this.normal.normalized();
+    }
+
+    toObject() {
+        const inheritedValue = super.toObject();
+        return {
+            ...inheritedValue,
+            normal: this.normal,
+            radius:this.radius,
+            material: this.material,
+            _type: 'Disk',
+        }
+    }
+
+    static fromObject({center, normal, radius, material}) {
+        return new Disk(center, Vector3.deserialize(normal), radius, Material.deserialize(material));
     }
 }

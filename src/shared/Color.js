@@ -101,4 +101,8 @@ class Color {
         decimalRound(Math.random()),
         decimalRound(Math.random())
     );
+
+    static deserialize({r, g, b}) {
+        return new Color(r, g, b);
+    }
 }
