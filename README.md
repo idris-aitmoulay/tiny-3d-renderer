@@ -9,6 +9,7 @@ A quick note, these test applications runs faster on firefox (than chrome).
 ## Example 1 - Simple Ray Tracing [900x900]
 
 - ensure `const isMultiThreadingEnabled = false` on `index.js` then open `index.html`
+- or open `example/render-using-basic-ray-tracing.html`
 
 ![sphere-rendering.png](docs/sphere-rendering.png)
 

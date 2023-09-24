@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Ray Tracing</title>
+</head>
+<body>
+    <!-- core -->
+    <script src="../src/shared/Light.js" type="text/javascript"></script>
+    <script src="../src/shared/Vector3.js" type="text/javascript"></script>
+    <script src="../src/shared/Vector3Utils.js" type="text/javascript"></script>
+    <script src="../src/shared/Color.js" type="text/javascript"></script>
+    <script src="../src/shared/Material.js" type="text/javascript"></script>
+    <script src="../src/shared/Projection.js" type="text/javascript"></script>
+    <script src="../src/ImageCanvasProjection.js" type="text/javascript"></script>
+
+    <!-- required geometries lib -->
+    <script src="../src/geometries/Shape.js" type="text/javascript"></script>
+    <script src="../src/geometries/Sphere.js" type="text/javascript"></script>
+    <script src="../src/geometries/Disk.js" type="text/javascript"></script>
+    <script src="../src/geometries/ShapeUtils.js" type="text/javascript"></script>
+
+    <!-- required libraries -->
+    <script src="../src/renderer/Ray.js" type="text/javascript"></script>
+    <script src="../src/renderer/RayTracer.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        const SCENE = {
+            planProjection: { // ImageProjection with grid system
+                topLeft: new Vector3(-1.28, 0.86, -0.5),
+                topRight: new Vector3(1.28, 0.86, -0.5),
+                bottomLeft: new Vector3(-1.28, -0.86, -0.5),
+                bottomRight: new Vector3(1.28, -0.86, -0.5)
+            },
+            camera: new Vector3(0, 0, 2), // camera: add camera (type, position, direction)
+            ia: new Color(0.5, 0.5, 0.5), // todo: ??
+            objects: [ // objects: 3d objects (type = Sphere|Cube|Plan|..., position
+                new Sphere(
+                    new Vector3(1.4, 0.5, -0.75),
+                    Material.random(),
+                    0.2
+                ),
+                new Disk(
+                    new Vector3(1, 1, -2.8),
+                    new Vector3(0, -1, -1),
+                    0.3,
+                    Material.random(),
+                )
+            ],
+            lights: [ // lights: add lights (type, position, direction)
+                new Light(
+                    new Vector3(-3, -0.5, 1),
+                    new Color(0.8, 0.3, 0.3),
+                    new Color(0.8, 0.8, 0.8),
+                ),
+                new Light(
+                    new Vector3(3, 2, 1),
+                    new Color(0.4, 0.4, 0.9),
+                    new Color(0.8, 0.8, 0.8)
+                ),
+            ]
+        };
+        const WIDTH = 900;
+        const HEIGHT = 900;
+        let projectionImage;
+
+        function render() {
+            projectionImage.render(document.querySelector('body'));
+        }
+
+        let rayTracer;
+        function init() {
+            rayTracer = new RayTracer(SCENE, WIDTH, HEIGHT);
+            projectionImage = new ImageCanvasProjection(WIDTH, HEIGHT);
+            document.image = projectionImage;
+        }
+
+        function preRender() {
+            // pre-rendering process
+            for (let y = 0; y < HEIGHT; y++) {
+                for (let x = 0; x < WIDTH; x++) {
+                    projectionImage.putPixel(
+                        x,
+                        y,
+                        Color.imageColorFromNormalizedColor(rayTracer.tracedValueAtPixel(x, y))
+                    );
+                }
+            }
+        }
+
+        function mounted() {
+            const startTime = Date.now();
+            init();
+            preRender();
+            render();
+            const totalDuration = (Date.now() - startTime)/1000;
+            console.warn("Render completed! " + totalDuration + " seconds!")
+        }
+
+        mounted();
+    </script>
+</body>
+</html>
